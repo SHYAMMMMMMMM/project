@@ -36,7 +36,7 @@ class ApiClass {
     print("hellooo");
     try {
       final result = await dio.post(url.loginEndpoint, data: formData);
-      print("sssssssssssssssssssss");
+      print("sssssssssssssssssssss $result");
       return Loginresponse.fromJson(result.data);
     } on DioError catch (e) {
       print(e);

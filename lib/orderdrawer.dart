@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/frssery.dart';
 import 'package:flutter_project/notification.dart';
 import 'package:flutter_project/profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'loginpage.dart';
 import 'order.dart';
@@ -91,10 +92,14 @@ class _OrderdrawerState extends State<Orderdrawer> {
            ListTile(
             leading: const Icon(Icons.logout),
             title: const Text("Log Out"),
-            onTap: () {
+            onTap: ()async {
+              SharedPreferences preferences = await SharedPreferences.getInstance();
+              preferences.remove("email");
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
+                MaterialPageRoute(builder: (_) {
+                  return LoginPage();
+                },),
               );
             },
           ),

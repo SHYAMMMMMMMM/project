@@ -2,22 +2,29 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_project/loginpage.dart';
 import 'package:flutter_project/registerpage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+   email = preferences.getString("email");
+  print("email");
   runApp(const MyApp());
 }
-
+var email;
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.red),
       title: 'JUICERY',
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: email == null ? LoginPage() : SplashScreen(),
     );
   }
 }
@@ -31,14 +38,12 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  // ignore: prefer_typing_uninitialized_variables
-  var orientation,size,height,width;
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     Timer(
-        const Duration(seconds: 3),
+        const Duration(seconds: 2),
         () => Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const RegisterPage())));
   }
@@ -52,10 +57,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    orientation = MediaQuery.of(context).orientation;
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -66,10 +67,10 @@ class _SplashScreenState extends State<SplashScreen>
             end: Alignment.bottomLeft,
           ),
         ),
-        child:  Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          const  Text(
+            const Text(
               'JUiCE',
               style: TextStyle(
                   fontSize: 90,
@@ -77,8 +78,8 @@ class _SplashScreenState extends State<SplashScreen>
                   fontFamily: 'Lobster-Regular'),
             ),
             Container(
-              margin:const EdgeInsets.fromLTRB(30, 0, 0, 0),
-              child:const Row(
+              margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
@@ -91,8 +92,8 @@ class _SplashScreenState extends State<SplashScreen>
             Row(
               children: [
                 Container(
-                  margin:const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                  child:const Text(
+                  margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                  child: const Text(
                     'HEALTHY TASTE',
                     style: TextStyle(fontSize: 40, color: Colors.white),
                   ),
@@ -102,8 +103,8 @@ class _SplashScreenState extends State<SplashScreen>
             Row(
               children: [
                 Container(
-                    margin:const EdgeInsets.fromLTRB(30, 0, 0, 0),
-                  child:const Text(
+                  margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                  child: const Text(
                     'GOOD',
                     style: TextStyle(fontSize: 40, color: Colors.white),
                   ),

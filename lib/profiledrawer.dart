@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/profile.dart';
 import 'package:flutter_project/wallet.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'frssery.dart';
 import 'loginpage.dart';
@@ -94,10 +95,14 @@ class _ProfiledrawerState extends State<Profiledrawer> {
            ListTile(
             leading: const Icon(Icons.logout),
             title: const Text("Log Out"),
-            onTap: () {
+            onTap: ()async {
+              SharedPreferences preferences = await SharedPreferences.getInstance();
+              preferences.remove("email");
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
+                MaterialPageRoute(builder:(_) {
+                  return LoginPage();
+                },),
               );
             },
           ),
