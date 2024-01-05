@@ -292,19 +292,12 @@ class _RegisterPageState extends State<RegisterPage> {
   void showSuccessMessage (
     String message, BuildContext context
   ) {
-     MotionToast.success(
-      title: const Text(
-        'Success',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      description: Text(message),
-      position: MotionToastPosition.top,
-      barrierColor: Colors.black.withOpacity(0.3),
-      width: 300,
-      height: 80,
-      dismissable: false,
-    ).show(context);
+      const snackdemo =  SnackBar(content: Text('Success'),
+   backgroundColor: Colors.lightGreen,
+   elevation: 10,
+   behavior: SnackBarBehavior.floating,
+   margin: EdgeInsets.all(5),
+   );
+     ScaffoldMessenger.of(context).showSnackBar(snackdemo);
   }
 }

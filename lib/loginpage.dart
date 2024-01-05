@@ -129,12 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                 onTap: () async {
                   SharedPreferences preferences =
                       await SharedPreferences.getInstance();
-                  preferences.setString("email", "useremail@gmail.com");
-                  Navigator.pushReplacement(context, MaterialPageRoute(
-                    builder: (_) {
-                      return SplashScreen();
-                    },
-                  ));
+                  preferences.setString("email", _mail.text);
                   loginuser(context);
                 },
                 child: Container(
@@ -242,19 +237,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void showSuccessMessage(String message, BuildContext context) {
-    MotionToast.success(
-      title: const Text(
-        'Success',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      description: Text(message),
-      position: MotionToastPosition.top,
-      barrierColor: Colors.black.withOpacity(0.3),
-      width: 300,
-      height: 80,
-      dismissable: false,
-    ).show(context);
+   const snackdemo =  SnackBar(content: Text('Success'),
+   backgroundColor: Colors.lightGreen,
+   elevation: 10,
+   behavior: SnackBarBehavior.floating,
+   margin: EdgeInsets.all(5),
+   );
+     ScaffoldMessenger.of(context).showSnackBar(snackdemo);
   }
 }

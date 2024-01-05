@@ -2,29 +2,30 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_project/frssery.dart';
 import 'package:flutter_project/loginpage.dart';
-import 'package:flutter_project/registerpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
-   email = preferences.getString("email");
-  print("email");
+  email = preferences.getString("email");
+  print(email);
   runApp(const MyApp());
 }
+
 var email;
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.red),
       title: 'JUICERY',
       debugShowCheckedModeBanner: false,
-      home: email == null ? LoginPage() : SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }
@@ -44,8 +45,11 @@ class _SplashScreenState extends State<SplashScreen>
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     Timer(
         const Duration(seconds: 2),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const RegisterPage())));
+        () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    email == null ? LoginPage() : Fressery())));
   }
 
   @override
