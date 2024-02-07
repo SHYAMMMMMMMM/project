@@ -11,6 +11,26 @@ class Fressery extends StatefulWidget {
 }
 
 class _FresseryState extends State<Fressery> {
+  List<String> productName = [
+    'pomegranate juice ₹.79',
+    'Grape juice ₹.350',
+    'Strawberry juice ₹.79',
+    'Apple juice ₹.79',
+    'Orange juice ₹.79',
+    'Mango juice ₹.79',
+    'Pineapple juice ₹.79'
+  ];
+  List<String> productImage = [
+    'https://tiimg.tistatic.com/fp/1/007/862/100-natural-fresh-sweetness-refreshing-delicious-pomegranate-juice-983.jpg',
+    'https://4.imimg.com/data4/VT/LQ/MY-31657999/grape-juice-500x500.jpg',
+    'https://img.freepik.com/premium-vector/strawberry-juice-cocktail-smoothie-yogurt-glass-with-straw-whole-half-strawberry-isolated-transparent-background-realistic-3d-vector-illustration_545793-1246.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGhcbcojKkeLG87HsTe19XhCLkdG2bs-GwBQ&usqp=CAU',
+    'https://draxe.com/wp-content/uploads/2022/12/DrAxeOrangeJuiceThumbnail.jpg',
+    'https://ceylonserve.com/wp-content/uploads/2022/09/Mango-Juice.jpg',
+    'https://www.amitaskitchen.in/107-large_default/pineapple-juice.jpg',
+  ];
+  List<int> cartItems = List.generate(10, (index) => 0);
+  String _selectedValue = '';
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,6 +38,7 @@ class _FresseryState extends State<Fressery> {
       child: Scaffold(
         drawer: const Appdrawer(),
         appBar: AppBar(
+          title: const Text('Fressery'),
           backgroundColor: Colors.transparent,
           elevation: 0,
           flexibleSpace: Container(
@@ -67,2051 +88,512 @@ class _FresseryState extends State<Fressery> {
         ),
         body: TabBarView(
           children: [
-            ListView(
-              children: [
-                Column(
-                  children: [
-                    Stack(
-                      fit: StackFit.passthrough,
+            ListView.builder(
+              itemCount: productName.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 50,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/25328814.jpg'),
-                                    fit: BoxFit.cover)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 40,
-                          child: Text(
-                            'Raw pomegranate',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 70,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 85,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '200ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 85,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '500ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 110,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 110,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 115,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Cart()),
-                              );
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Image(
+                                height: 120,
+                                width: 120,
+                                image: NetworkImage(
+                                    productImage[index].toString())),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'ADD TO CART',
+                                    productName[index].toString(),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  const Text(
+                                    'Size',
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
+                                        color: Colors.grey, fontSize: 10),
+                                  ),
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                        width: 100,
+                                        child: RadioMenuButton(
+                                          value: '200ml',
+                                          groupValue: _selectedValue,
+                                          onChanged: (selectedvalue) {
+                                            setState(() => _selectedValue =
+                                                selectedvalue!);
+                                          },
+                                          style: ButtonStyle(
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      2),
+                                              backgroundColor:
+                                                  const MaterialStatePropertyAll(
+                                                      Color.fromARGB(
+                                                          255, 214, 232, 194))),
+                                          child: const Text('200ml'),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                        width: 100,
+                                        child: RadioMenuButton(
+                                          value: '500ml',
+                                          groupValue: _selectedValue,
+                                          onChanged: (selectedvalue) {
+                                            setState(() => _selectedValue =
+                                                selectedvalue!);
+                                          },
+                                          style: ButtonStyle(
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      2),
+                                              backgroundColor:
+                                                  const MaterialStatePropertyAll(
+                                                      Color.fromARGB(
+                                                          255, 214, 232, 194))),
+                                          child: const Text('500ml'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Cart()),
+                                        );
+                                      },
+                                      child: Container(
+                                        height: 35,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                            gradient: const LinearGradient(
+                                              colors: [
+                                                Colors.orange,
+                                                Colors.pink
+                                              ],
+                                              begin: Alignment.bottomLeft,
+                                              end: Alignment.centerLeft,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: const Center(
+                                          child: Text(
+                                            'Add to cart',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    width: 115,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        IconButton(
+                                          icon: const Icon(Icons.remove),
+                                          onPressed: () {
+                                            setState(() {
+                                              if (cartItems[index] > 0) {
+                                                cartItems[index]--;
+                                              }
+                                            });
+                                          },
+                                        ),
+                                        Text(cartItems[index].toString()),
+                                        IconButton(
+                                          icon: const Icon(Icons.add),
+                                          onPressed: () {
+                                            setState(() {
+                                              cartItems[index]++;
+                                            });
+                                          },
+                                        )
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                        const Positioned(
-                            right: 10,
-                            top: 30,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 180, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 210,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/grape.jpeg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 200,
-                          child: Text(
-                            'Special grape juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 230,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 245,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '200ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 245,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '500ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 270,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 270,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 270,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Cart()),
-                              );
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 190,
-                            child: Text(
-                              '3x Rs.350',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 340, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 375,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/straw.jpeg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 360,
-                          child: Text(
-                            'Strawberry juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 390,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 405,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '200ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 405,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 430,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 430,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 430,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 350,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 500, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 525,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/apple.jpeg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 520,
-                          child: Text(
-                            'Fresh apple juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 550,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 565,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '200ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 565,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 590,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 590,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 590,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 510,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 660, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 685,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/orange.jpg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 680,
-                          child: Text(
-                            'Orange juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 710,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 725,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '200ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 725,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 760,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 760,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 760,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 670,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
                       ],
-                    )
-                  ],
-                )
-              ],
+                    ),
+                  ),
+                );
+              },
             ),
-            ListView(
-              children: [
-                Column(
-                  children: [
-                    Stack(
-                      fit: StackFit.passthrough,
+            ListView.builder(
+              itemCount: productName.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 50,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/25328814.jpg'),
-                                    fit: BoxFit.cover)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 40,
-                          child: Text(
-                            'Raw pomegranate',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 70,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 85,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '200ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 85,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '500ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 110,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 110,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 115,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Cart()),
-                              );
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Image(
+                                height: 120,
+                                width: 120,
+                                image: NetworkImage(
+                                    productImage[index].toString())),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'ADD TO CART',
+                                    productName[index].toString(),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  const Text(
+                                    'Size',
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
+                                        color: Colors.grey, fontSize: 10),
+                                  ),
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                        width: 100,
+                                        child: RadioMenuButton(
+                                          value: '200ml',
+                                          groupValue: _selectedValue,
+                                          onChanged: (selectedvalue) {
+                                            setState(() => _selectedValue =
+                                                selectedvalue!);
+                                          },
+                                          style: ButtonStyle(
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      2),
+                                              backgroundColor:
+                                                  const MaterialStatePropertyAll(
+                                                      Color.fromARGB(
+                                                          255, 214, 232, 194))),
+                                          child: const Text('200ml'),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                        width: 100,
+                                        child: RadioMenuButton(
+                                          value: '500ml',
+                                          groupValue: _selectedValue,
+                                          onChanged: (selectedvalue) {
+                                            setState(() => _selectedValue =
+                                                selectedvalue!);
+                                          },
+                                          style: ButtonStyle(
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      2),
+                                              backgroundColor:
+                                                  const MaterialStatePropertyAll(
+                                                      Color.fromARGB(
+                                                          255, 214, 232, 194))),
+                                          child: const Text('500ml'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Cart()),
+                                        );
+                                      },
+                                      child: Container(
+                                        height: 35,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                            gradient: const LinearGradient(
+                                              colors: [
+                                                Colors.orange,
+                                                Colors.pink
+                                              ],
+                                              begin: Alignment.bottomLeft,
+                                              end: Alignment.centerLeft,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: const Center(
+                                          child: Text(
+                                            'Add to cart',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    width: 115,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        IconButton(
+                                          icon: const Icon(Icons.remove),
+                                          onPressed: () {
+                                            setState(() {
+                                              if (cartItems[index] > 0) {
+                                                cartItems[index]--;
+                                              }
+                                            });
+                                          },
+                                        ),
+                                        Text(cartItems[index].toString()),
+                                        IconButton(
+                                          icon: const Icon(Icons.add),
+                                          onPressed: () {
+                                            setState(() {
+                                              cartItems[index]++;
+                                            });
+                                          },
+                                        )
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                        const Positioned(
-                            right: 10,
-                            top: 30,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 180, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 210,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/grape.jpeg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 200,
-                          child: Text(
-                            'Special grape juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 230,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 245,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '200ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 245,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '500ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 270,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 270,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 270,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Cart()),
-                              );
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 190,
-                            child: Text(
-                              '3x Rs.350',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 340, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 375,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/straw.jpeg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 360,
-                          child: Text(
-                            'Strawberry juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 390,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 405,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '200ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 405,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 430,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 430,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 430,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 350,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 500, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 525,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/apple.jpeg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 520,
-                          child: Text(
-                            'Fresh apple juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 550,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 565,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '200ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 565,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 590,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 590,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 590,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 510,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 660, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 685,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/orange.jpg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 680,
-                          child: Text(
-                            'Orange juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 710,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 725,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '200ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 725,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 760,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 760,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 760,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 670,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
                       ],
-                    )
-                  ],
-                )
-              ],
+                    ),
+                  ),
+                );
+              },
             ),
-            ListView(
-              children: [
-                Column(
-                  children: [
-                    Stack(
-                      fit: StackFit.passthrough,
+            ListView.builder(
+              itemCount: productName.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 50,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/25328814.jpg'),
-                                    fit: BoxFit.cover)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 40,
-                          child: Text(
-                            'Raw pomegranate',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 70,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 85,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '200ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 85,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '500ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 110,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 110,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 115,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Cart()),
-                              );
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Image(
+                                height: 120,
+                                width: 120,
+                                image: NetworkImage(
+                                    productImage[index].toString())),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'ADD TO CART',
+                                    productName[index].toString(),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  const Text(
+                                    'Size',
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
+                                        color: Colors.grey, fontSize: 10),
+                                  ),
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                        width: 100,
+                                        child: RadioMenuButton(
+                                          value: '200ml',
+                                          groupValue: _selectedValue,
+                                          onChanged: (selectedvalue) {
+                                            setState(() => _selectedValue =
+                                                selectedvalue!);
+                                          },
+                                          style: ButtonStyle(
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      2),
+                                              backgroundColor:
+                                                  const MaterialStatePropertyAll(
+                                                      Color.fromARGB(
+                                                          255, 214, 232, 194))),
+                                          child: const Text('200ml'),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                        width: 100,
+                                        child: RadioMenuButton(
+                                          value: '500ml',
+                                          groupValue: _selectedValue,
+                                          onChanged: (selectedvalue) {
+                                            setState(() => _selectedValue =
+                                                selectedvalue!);
+                                          },
+                                          style: ButtonStyle(
+                                              shape: MaterialStatePropertyAll(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
+                                              elevation:
+                                                  const MaterialStatePropertyAll(
+                                                      2),
+                                              backgroundColor:
+                                                  const MaterialStatePropertyAll(
+                                                      Color.fromARGB(
+                                                          255, 214, 232, 194))),
+                                          child: const Text('500ml'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Cart()),
+                                        );
+                                      },
+                                      child: Container(
+                                        height: 35,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                            gradient: const LinearGradient(
+                                              colors: [
+                                                Colors.orange,
+                                                Colors.pink
+                                              ],
+                                              begin: Alignment.bottomLeft,
+                                              end: Alignment.centerLeft,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: const Center(
+                                          child: Text(
+                                            'Add to cart',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    width: 115,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        IconButton(
+                                          icon: const Icon(Icons.remove),
+                                          onPressed: () {
+                                            setState(() {
+                                              if (cartItems[index] > 0) {
+                                                cartItems[index]--;
+                                              }
+                                            });
+                                          },
+                                        ),
+                                        Text(cartItems[index].toString()),
+                                        IconButton(
+                                          icon: const Icon(Icons.add),
+                                          onPressed: () {
+                                            setState(() {
+                                              cartItems[index]++;
+                                            });
+                                          },
+                                        )
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                        const Positioned(
-                            right: 10,
-                            top: 30,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 180, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 210,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/grape.jpeg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 200,
-                          child: Text(
-                            'Special grape juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 230,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 245,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '200ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 245,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                                height: 20,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    border: Border.all(color: Colors.grey)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '500ml',
-                                      style: TextStyle(
-                                          fontSize: 8, color: Colors.black),
-                                    )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 270,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 270,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 270,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Cart()),
-                              );
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 190,
-                            child: Text(
-                              '3x Rs.350',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 340, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 375,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/straw.jpeg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 360,
-                          child: Text(
-                            'Strawberry juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 390,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 405,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '200ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 405,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 430,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 430,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 430,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 350,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 500, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 525,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/apple.jpeg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 520,
-                          child: Text(
-                            'Fresh apple juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 550,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 565,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '200ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 565,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 590,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 590,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 590,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 510,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 660, 0, 0),
-                          height: 150,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                        ),
-                        Positioned(
-                          left: 10,
-                          top: 685,
-                          child: Container(
-                            height: 90,
-                            width: 100,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                image: DecorationImage(
-                                    image: AssetImage('images/orange.jpg'),
-                                    fit: BoxFit.fitHeight)),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 680,
-                          child: Text(
-                            'Orange juice',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const Positioned(
-                          left: 130,
-                          top: 710,
-                          child: Text(
-                            'Size',
-                            style: TextStyle(color: Colors.grey, fontSize: 10),
-                          ),
-                        ),
-                        Positioned(
-                          left: 130,
-                          top: 725,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '200ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                          left: 182,
-                          top: 725,
-                          child: Container(
-                              height: 20,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  border: Border.all(color: Colors.grey)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '500ml',
-                                    style: TextStyle(
-                                        fontSize: 8, color: Colors.black),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Positioned(
-                            left: 125,
-                            top: 760,
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                            left: 180,
-                            top: 760,
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {},
-                            )),
-                        Positioned(
-                          right: 30,
-                          top: 760,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.red, Colors.orangeAccent],
-                                    begin: Alignment.topRight,
-                                    end: Alignment.topLeft,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'ADD TO CART',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Positioned(
-                            right: 10,
-                            top: 670,
-                            child: Text(
-                              '1x Rs.79',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 13),
-                            )),
                       ],
-                    )
-                  ],
-                )
-              ],
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),

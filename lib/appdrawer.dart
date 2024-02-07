@@ -16,14 +16,8 @@ class Appdrawer extends StatefulWidget {
 }
 
 class _AppdrawerState extends State<Appdrawer> {
-  // ignore: prefer_typing_uninitialized_variables
-  var orientation, size, height, width;
   @override
   Widget build(BuildContext context) {
-    orientation = MediaQuery.of(context).orientation;
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -64,7 +58,7 @@ class _AppdrawerState extends State<Appdrawer> {
             leading: const Icon(Icons.wallet),
             title: const Text('My Wallet'),
             onTap: () {
-               Navigator.pushReplacement(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const Wallet()),
               );
@@ -74,7 +68,7 @@ class _AppdrawerState extends State<Appdrawer> {
             leading: const Icon(Icons.person),
             title: const Text('My Account'),
             onTap: () {
-                Navigator.pushReplacement(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const Profiler()),
               );
@@ -89,7 +83,7 @@ class _AppdrawerState extends State<Appdrawer> {
             leading: const Icon(Icons.notifications),
             title: const Text('Notification'),
             onTap: () {
-               Navigator.pushReplacement(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const Notifications()),
               );
@@ -99,13 +93,16 @@ class _AppdrawerState extends State<Appdrawer> {
             leading: const Icon(Icons.logout),
             title: const Text("Log Out"),
             onTap: () async {
-              SharedPreferences preferences = await SharedPreferences.getInstance();
+              SharedPreferences preferences =
+                  await SharedPreferences.getInstance();
               preferences.remove("email");
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder:(_) {
-                  return LoginPage();
-                },),
+                MaterialPageRoute(
+                  builder: (_) {
+                    return LoginPage();
+                  },
+                ),
               );
             },
           ),

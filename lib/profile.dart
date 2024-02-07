@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/adress.dart';
 import 'package:flutter_project/profiledrawer.dart';
 
+
 import 'cart.dart';
 import 'notification.dart';
 
@@ -18,6 +19,7 @@ class _ProfilerState extends State<Profiler> {
   final code = TextEditingController();
   bool isplaced = false;
   bool islanded = false;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -316,6 +318,32 @@ class _ProfilerState extends State<Profiler> {
                       ),
                     ],
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(0, 20, 70, 0),
+                      height: 30,
+                      width: 30,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.pinkAccent)),
+                      child: Row(
+                        children: [
+                          FittedBox(
+                            fit: BoxFit.fill,
+                            child: IconButton(
+                              color: Colors.pinkAccent,
+                              icon: const Icon(Icons.photo),
+                              onPressed: () {
+                              
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
