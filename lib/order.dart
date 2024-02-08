@@ -13,8 +13,6 @@ class Order extends StatefulWidget {
 }
 
 class _OrderState extends State<Order> {
-  // ignore: prefer_typing_uninitialized_variables
-  var orientation, size, height, width;
   bool isSwitched = false;
   bool isopened = false;
   bool isclosed = false;
@@ -22,10 +20,6 @@ class _OrderState extends State<Order> {
   bool iscalled = false;
   @override
   Widget build(BuildContext context) {
-    orientation = MediaQuery.of(context).orientation;
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
     return DefaultTabController(
       length: 1,
       child: Scaffold(
@@ -49,10 +43,11 @@ class _OrderState extends State<Order> {
             IconButton(
               icon: const Icon(Icons.notifications),
               onPressed: () {
-                 Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Notifications()),
-              );
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Notifications()),
+                );
               },
             ),
             IconButton(
@@ -161,10 +156,10 @@ class _OrderState extends State<Order> {
                   ),
                 ),
                 Positioned(
-                  left: 174,
-                  top: 75,
+                  left: 180,
+                  top: 80,
                   child: SizedBox(
-                    height: 40,
+                    height: 30,
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: Switch(
@@ -364,10 +359,10 @@ class _OrderState extends State<Order> {
                   ),
                 ),
                 Positioned(
-                  left: 174,
-                  top: 235,
+                  left: 180,
+                  top: 240,
                   child: SizedBox(
-                    height: 40,
+                    height: 30,
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: Switch(
@@ -549,10 +544,10 @@ class _OrderState extends State<Order> {
                   ),
                 ),
                 Positioned(
-                  left: 174,
-                  top: 395,
+                  left: 178,
+                  top: 400,
                   child: SizedBox(
-                    height: 40,
+                    height: 30,
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: Switch(
@@ -782,10 +777,10 @@ class _OrderState extends State<Order> {
                   ),
                 ),
                 Positioned(
-                  left: 174,
-                  top: 555,
+                  left: 180,
+                  top: 560,
                   child: SizedBox(
-                    height: 40,
+                    height: 30,
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: Switch(
@@ -996,10 +991,10 @@ class _OrderState extends State<Order> {
                   ),
                 ),
                 Positioned(
-                  left: 174,
-                  top: 745,
+                  left: 179,
+                  top: 750,
                   child: SizedBox(
-                    height: 40,
+                    height: 30,
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: Switch(

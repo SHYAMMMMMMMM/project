@@ -39,6 +39,8 @@ dependencies:
   motion_toast: ^2.7.10
   shared_preferences: ^2.2.2
   image_picker: ^1.0.7
+  image_cropper: ^5.0.1
+  permission_handler: ^11.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

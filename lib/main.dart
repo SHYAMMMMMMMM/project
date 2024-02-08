@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.red),
       title: 'JUICERY',
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home:const SplashScreen(),
     );
   }
 }
