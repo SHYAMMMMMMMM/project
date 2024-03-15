@@ -557,7 +557,6 @@ class _ProfilerState extends State<Profiler> {
       setState(() {
         imageFile = File(croppedFile.path);
       });
-      // reload();
     }
   }
 }

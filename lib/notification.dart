@@ -103,7 +103,7 @@ class _NotificationsState extends State<Notifications> {
                     ),
                     Container(
                       margin: const EdgeInsets.fromLTRB(0, 150, 0, 0),
-                      height: 160,
+                      height: 170,
                       width: double.infinity,
                       color: Colors.white,
                       child: Column(

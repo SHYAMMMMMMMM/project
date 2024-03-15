@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_project/frssery.dart';
 import 'package:flutter_project/loginpage.dart';
@@ -16,6 +18,8 @@ class Appdrawer extends StatefulWidget {
 }
 
 class _AppdrawerState extends State<Appdrawer> {
+  
+  File? imageFile;
   @override
   Widget build(BuildContext context) {
     return Drawer(

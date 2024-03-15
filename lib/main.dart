@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_project/frssery.dart';
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.red),
       title: 'JUICERY',
       debugShowCheckedModeBanner: false,
-      home:const SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
